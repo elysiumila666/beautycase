@@ -11,7 +11,7 @@ import SwiftUI
 struct beautycaseApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HomePageView()
         }
     }
 }

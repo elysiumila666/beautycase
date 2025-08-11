@@ -14,6 +14,7 @@
 		5F03F4FB2E49B80500502343 /* beautycaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F03F4FA2E49B80500502343 /* beautycaseTests.swift */; };
 		5F03F5052E49B80500502343 /* beautycaseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F03F5042E49B80500502343 /* beautycaseUITests.swift */; };
 		5F03F5072E49B80500502343 /* beautycaseUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F03F5062E49B80500502343 /* beautycaseUITestsLaunchTests.swift */; };
+		5F03F5142E49BBC000502343 /* HomePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F03F5132E49BBC000502343 /* HomePageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		5F03F5002E49B80500502343 /* beautycaseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = beautycaseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F03F5042E49B80500502343 /* beautycaseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = beautycaseUITests.swift; sourceTree = "<group>"; };
 		5F03F5062E49B80500502343 /* beautycaseUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = beautycaseUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		5F03F5132E49BBC000502343 /* HomePageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +96,7 @@
 		5F03F4E82E49B80300502343 /* beautycase */ = {
 			isa = PBXGroup;
 			children = (
+				5F03F5132E49BBC000502343 /* HomePageView.swift */,
 				5F03F4E92E49B80300502343 /* beautycaseApp.swift */,
 				5F03F4EB2E49B80300502343 /* ContentView.swift */,
 				5F03F4ED2E49B80500502343 /* Assets.xcassets */,
@@ -258,6 +261,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F03F4EC2E49B80300502343 /* ContentView.swift in Sources */,
+				5F03F5142E49BBC000502343 /* HomePageView.swift in Sources */,
 				5F03F4EA2E49B80300502343 /* beautycaseApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
