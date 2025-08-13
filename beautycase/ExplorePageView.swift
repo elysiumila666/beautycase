@@ -4,47 +4,32 @@ struct ExplorePageView: View {
     @State private var searchText = ""
     
     var body: some View {
-        VStack(spacing: 0) {
-            // 顶部导航栏
-            TopNavigationBar()
-            
-            // 搜索区域
-            SearchSection(searchText: $searchText)
-            
-            // 热门展柜
-            PopularShowcasesSection()
-            
-            // 推荐内容
-            RecommendedContentSection()
-            
-            Spacer()
+        ScrollView {
+            VStack(spacing: 0) {
+                // 顶部导航栏
+                TopNavigationBar()
+                
+                // 搜索区域
+                SearchSection(
+                    searchText: $searchText,
+                    placeholder: "探索精彩展柜...",
+                    filters: []
+                )
+                
+                // 热门展柜
+                PopularShowcasesSection()
+                
+                // 推荐内容
+                RecommendedContentSection()
+                
+                // 底部留白，确保底部tabs可见
+                Spacer(minLength: 120)
+            }
         }
     }
 }
 
-// 搜索区域
-struct SearchSection: View {
-    @Binding var searchText: String
-    
-    var body: some View {
-        HStack {
-            Image(systemName: "magnifyingglass")
-                .foregroundColor(.gray)
-            
-            TextField("探索精彩展柜...", text: $searchText)
-                .textFieldStyle(PlainTextFieldStyle())
-        }
-        .padding()
-        .background(.ultraThinMaterial)
-        .overlay(
-            RoundedRectangle(cornerRadius: 20)
-                .stroke(.white.opacity(0.3), lineWidth: 1)
-        )
-        .cornerRadius(20)
-        .padding(.horizontal, 20)
-        .padding(.top, 20)
-    }
-}
+// SearchSection 已移动到 SharedComponents.swift
 
 // 热门展柜区域
 struct PopularShowcasesSection: View {

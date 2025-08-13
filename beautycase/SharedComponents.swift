@@ -120,6 +120,45 @@ struct StatusBarView: View {
     }
 }
 
+// 带关闭按钮的顶部导航栏
+struct TopNavigationBarWithClose: View {
+    var body: some View {
+        HStack {
+            Button(action: {}) {
+                Image(systemName: "chevron.left")
+                    .font(.title2)
+                    .foregroundColor(.primary)
+            }
+            
+            Spacer()
+            
+            HStack(spacing: 15) {
+                Button(action: {}) {
+                    Image(systemName: "bell")
+                        .font(.title2)
+                        .foregroundColor(.primary)
+                }
+                
+                Button(action: {}) {
+                    Image(systemName: "gearshape")
+                        .font(.title2)
+                        .foregroundColor(.primary)
+                }
+                
+                Circle()
+                    .fill(Color.blue.opacity(0.3))
+                    .frame(width: 35, height: 35)
+                    .overlay(
+                        Image(systemName: "person.fill")
+                            .foregroundColor(.blue)
+                    )
+            }
+        }
+        .padding(.horizontal, 20)
+        .padding(.top, 10)
+    }
+}
+
 // 底部导航栏 - 玻璃拟物化风格
 struct BottomTabBar: View {
     @Binding var selectedTab: Int
@@ -135,34 +174,126 @@ struct BottomTabBar: View {
                     VStack(spacing: 0) {
                         // 图标
                         Image(systemName: tabIcons[index])
-                            .font(.system(size: 24, weight: .medium))
+                            .font(.system(size: 20, weight: .medium))
                             .foregroundColor(selectedTab == index ? .white : .primary)
-                            .frame(width: 50, height: 50)
+                            .frame(width: 40, height: 40)
                             .background(
                                 Circle()
                                     .fill(selectedTab == index ? Color.green : Color.clear)
                                     .scaleEffect(selectedTab == index ? 1.0 : 0.8)
                             )
-                            .scaleEffect(selectedTab == index ? 1.1 : 1.0)
+                            .scaleEffect(selectedTab == index ? 1.05 : 1.0)
                     }
                 }
                 .frame(maxWidth: .infinity)
             }
         }
-        .padding(.vertical, 20)
-        .padding(.horizontal, 30)
+        .padding(.vertical, 16)
+        .padding(.horizontal, 24)
         .background(.ultraThinMaterial)
         .overlay(
-            RoundedRectangle(cornerRadius: 30)
+            RoundedRectangle(cornerRadius: 25)
                 .stroke(.white.opacity(0.3), lineWidth: 1)
         )
-        .cornerRadius(30)
-        .shadow(color: .black.opacity(0.15), radius: 15, x: 0, y: 8)
+        .cornerRadius(25)
+        .shadow(color: .black.opacity(0.12), radius: 12, x: 0, y: 6)
         .padding(.horizontal, 20)
         .padding(.bottom, 20)
     }
     
     private let tabIcons = ["house.fill", "location.north.fill", "person.fill"]
+}
+
+// 颜色扩展
+extension Color {
+    static let olive = Color(red: 0.5, green: 0.5, blue: 0.0)
+}
+
+// 通用搜索区域
+struct SearchSection: View {
+    @Binding var searchText: String
+    let placeholder: String
+    let filters: [String]
+    
+    init(searchText: Binding<String>, placeholder: String = "你想展示什么？", filters: [String] = []) {
+        self._searchText = searchText
+        self.placeholder = placeholder
+        self.filters = filters
+    }
+    
+    var body: some View {
+        VStack(spacing: 12) {
+            // 主搜索框
+            HStack {
+                Image(systemName: "magnifyingglass")
+                    .foregroundColor(.gray)
+                
+                TextField(placeholder, text: $searchText)
+                    .textFieldStyle(PlainTextFieldStyle())
+                
+                Button(action: {}) {
+                    Image(systemName: "magnifyingglass")
+                        .foregroundColor(.white)
+                        .frame(width: 40, height: 40)
+                        .background(Color.green)
+                        .clipShape(Circle())
+                }
+            }
+            .padding()
+            .background(.ultraThinMaterial)
+            .overlay(
+                RoundedRectangle(cornerRadius: 20)
+                    .stroke(.white.opacity(0.3), lineWidth: 1)
+            )
+            .cornerRadius(20)
+            
+            // 筛选信息（如果有的话）
+            if !filters.isEmpty {
+                HStack(spacing: 20) {
+                    ForEach(filters, id: \.self) { filter in
+                        Text(filter)
+                            .font(.system(size: 14, weight: .medium))
+                            .foregroundColor(.primary)
+                    }
+                }
+                .padding(.horizontal, 20)
+            }
+        }
+        .padding(.horizontal, 20)
+        .padding(.top, 20)
+    }
+}
+
+// Category 枚举 - 用于展柜分类
+enum Category: CaseIterable {
+    case stars, pets, medal, films
+    
+    var title: String {
+        switch self {
+        case .stars: return "Stars"
+        case .pets: return "Pets"
+        case .medal: return "Medal"
+        case .films: return "Films"
+        }
+    }
+    
+    var icon: String {
+        switch self {
+        case .stars: return "music.note"
+        case .pets: return "pawprint.fill"
+        case .medal: return "medal.fill"
+        case .films: return "film.fill"
+        }
+    }
+    
+    var description: String {
+        switch self {
+        case .stars: return "明星收藏"
+        case .pets: return "萌宠收藏"
+        case .medal: return "奖牌收藏"
+        case .films: return "胶片收藏"
+        }
+    }
 }
 
 struct SharedComponents_Previews: PreviewProvider {

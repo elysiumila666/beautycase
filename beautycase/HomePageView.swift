@@ -1,7 +1,8 @@
 import SwiftUI
 
 struct HomePageView: View {
-    @State private var selectedCategory: Category = .hotel
+    @State private var selectedCategory: Category = .stars
+    @State private var navigateToShowcase = false
     
     var body: some View {
         ZStack {
@@ -13,7 +14,12 @@ struct HomePageView: View {
                 StatusBarView()
                 
                 // 分类导航 - 2x2网格布局
-                CategoryGridNavigation(selectedCategory: $selectedCategory)
+                CategoryGridNavigation(
+                    selectedCategory: $selectedCategory,
+                    onCategoryTap: { category in
+                        navigateToShowcase = true
+                    }
+                )
                 
                 // 3D景观互动区域
                 InteractiveLandscapeView()
@@ -21,6 +27,13 @@ struct HomePageView: View {
                 // 底部提示卡片
                 ExploreNowCard()
             }
+            
+            // 导航到展柜列表页面
+            NavigationLink(
+                destination: ShowcaseListView(category: selectedCategory),
+                isActive: $navigateToShowcase,
+                label: { EmptyView() }
+            )
         }
         .ignoresSafeArea()
     }
@@ -31,15 +44,17 @@ struct HomePageView: View {
 // 分类导航 - 2x2网格布局
 struct CategoryGridNavigation: View {
     @Binding var selectedCategory: Category
+    let onCategoryTap: (Category) -> Void
     
     var body: some View {
-        LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 20), count: 2), spacing: 20) {
+        LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 16), count: 2), spacing: 16) {
             ForEach(Category.allCases, id: \.self) { category in
                 CategoryButton(
                     category: category,
                     isSelected: selectedCategory == category
                 ) {
                     selectedCategory = category
+                    onCategoryTap(category)
                 }
             }
         }
@@ -48,7 +63,7 @@ struct CategoryGridNavigation: View {
     }
 }
 
-// 分类按钮
+// 分类按钮 - 参考图片样式
 struct CategoryButton: View {
     let category: Category
     let isSelected: Bool
@@ -56,49 +71,39 @@ struct CategoryButton: View {
     
     var body: some View {
         Button(action: action) {
-            VStack(spacing: 12) {
+            HStack(spacing: 12) {
+                // 图标
                 Image(systemName: category.icon)
-                    .font(.system(size: 28))
+                    .font(.system(size: 24, weight: .medium))
                     .foregroundColor(isSelected ? .white : .primary)
+                    .frame(width: 40, height: 40)
                 
-                Text(category.title)
-                    .font(.system(size: 14, weight: .medium))
-                    .foregroundColor(isSelected ? .white : .primary)
+                // 文字
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(category.title)
+                        .font(.system(size: 16, weight: .bold))
+                        .foregroundColor(isSelected ? .white : .primary)
+                    
+                    Text(category.description)
+                        .font(.system(size: 12))
+                        .foregroundColor(isSelected ? .white.opacity(0.3) : .gray)
+                }
+                
+                Spacer()
             }
-            .frame(height: 100)
+            .padding(16)
+            .frame(height: 80)
             .frame(maxWidth: .infinity)
             .background(
-                RoundedRectangle(cornerRadius: 20)
+                RoundedRectangle(cornerRadius: 16)
                     .fill(isSelected ? Color.blue : Color.clear)
                     .background(.ultraThinMaterial)
                     .overlay(
-                        RoundedRectangle(cornerRadius: 20)
+                        RoundedRectangle(cornerRadius: 16)
                             .stroke(.white.opacity(0.3), lineWidth: 1)
                     )
-                    .shadow(color: .black.opacity(0.1), radius: 8, x: 0, y: 4)
+                    .shadow(color: .black.opacity(0.1), radius: 6, x: 0, y: 3)
             )
-        }
-    }
-}
-
-enum Category: CaseIterable {
-    case hotel, excursions, restaurants, spa
-    
-    var title: String {
-        switch self {
-        case .hotel: return "展柜"
-        case .excursions: return "收藏"
-        case .restaurants: return "分类"
-        case .spa: return "主题"
-        }
-    }
-    
-    var icon: String {
-        switch self {
-        case .hotel: return "house.fill"
-        case .excursions: return "mountain.2.fill"
-        case .restaurants: return "tag.fill"
-        case .spa: return "sparkles"
         }
     }
 }

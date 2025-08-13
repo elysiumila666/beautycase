@@ -4,20 +4,23 @@ struct ProfilePageView: View {
     @State private var isEditingProfile = false
     
     var body: some View {
-        VStack(spacing: 0) {
-            // 顶部导航栏
-            TopNavigationBar()
-            
-            // 用户信息区域
-            UserProfileSection(isEditingProfile: $isEditingProfile)
-            
-            // 统计信息
-            StatisticsSection()
-            
-            // 功能菜单
-            MenuSection()
-            
-            Spacer()
+        ScrollView {
+            VStack(spacing: 0) {
+                // 顶部导航栏
+                TopNavigationBar()
+                
+                // 用户信息区域
+                UserProfileSection(isEditingProfile: $isEditingProfile)
+                
+                // 统计信息
+                StatisticsSection()
+                
+                // 功能菜单
+                MenuSection()
+                
+                // 底部留白，确保底部tabs可见
+                Spacer(minLength: 120)
+            }
         }
     }
 }

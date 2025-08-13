@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		5F03F4EA2E49B80300502343 /* beautycaseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F03F4E92E49B80300502343 /* beautycaseApp.swift */; };
-		5F03F4EC2E49B80300502343 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F03F4EB2E49B80300502343 /* ContentView.swift */; };
 		5F03F4EE2E49B80500502343 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F03F4ED2E49B80500502343 /* Assets.xcassets */; };
 		5F03F4F12E49B80500502343 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F03F4F02E49B80500502343 /* Preview Assets.xcassets */; };
 		5F03F4FB2E49B80500502343 /* beautycaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F03F4FA2E49B80500502343 /* beautycaseTests.swift */; };
@@ -43,7 +42,6 @@
 /* Begin PBXFileReference section */
 		5F03F4E62E49B80300502343 /* beautycase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = beautycase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F03F4E92E49B80300502343 /* beautycaseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = beautycaseApp.swift; sourceTree = "<group>"; };
-		5F03F4EB2E49B80300502343 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		5F03F4ED2E49B80500502343 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5F03F4F02E49B80500502343 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5F03F4F62E49B80500502343 /* beautycaseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = beautycaseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -116,7 +114,6 @@
 				5FB60F5C2E49D7170039399B /* CollectionDetailView.swift */,
 				5F03F5132E49BBC000502343 /* HomePageView.swift */,
 				5F03F4E92E49B80300502343 /* beautycaseApp.swift */,
-				5F03F4EB2E49B80300502343 /* ContentView.swift */,
 				5F03F4ED2E49B80500502343 /* Assets.xcassets */,
 				5F03F4EF2E49B80500502343 /* Preview Content */,
 			);
@@ -278,7 +275,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5F03F4EC2E49B80300502343 /* ContentView.swift in Sources */,
 				5FB60F612E49D72B0039399B /* ShowcaseListView.swift in Sources */,
 				5F03F5142E49BBC000502343 /* HomePageView.swift in Sources */,
 				5FB60F632E49DAD40039399B /* SharedComponents.swift in Sources */,

@@ -1,169 +1,111 @@
-# StellarCase iOS App - 数字收藏展柜
+# StellarCase - 3D数字收藏展示应用
 
 ## 🚀 项目概述
 
-**StellarCase** 是一款创新的iOS应用，为用户提供3D数字化展柜功能，让用户能够分类展示和收藏珍视的物品。
+StellarCase 是一款创新的iOS应用，旨在为用户提供一个3D数字展示空间，用于展示和分享他们珍爱的收藏品。应用采用现代化的SwiftUI架构，结合毛玻璃效果和3D背景，为用户带来沉浸式的收藏体验。
 
-### 核心概念
-- **3D数字化展柜** - 分类展示用户珍视的物品
-- **平面图片→3D化展示** - 支持多张图片的3D重建
-- **实体物品数字化收藏** - 将珍贵物品数字化保存
-- **情感化社交产品** - 展示自我认同，同好交流
+## 📱 核心功能
 
-## 🎯 产品定位
+### MVP阶段功能
+- **3D数字展柜**: 将2D图片转换为3D展示效果
+- **分类管理**: 支持Stars（明星）、Pets（萌宠）、Medal（奖牌）、Films（胶片）四大分类
+- **收藏品管理**: 每个展柜最多20个收藏品（免费），更多需要付费解锁
+- **用户备注**: 支持为每个收藏品添加个人备注
+- **360度展示**: 支持收藏品的360度旋转查看（或有限角度范围）
 
-### 目标用户
-- 收藏爱好者
-- 文艺青年
-- 追星族
-- 怀旧人群
-- 潮玩爱好者
+### 技术特性
+- **性能优化**: 针对移动设备优化，确保流畅运行
+- **图片限制**: 单次上传最多10张图片，每张不超过10MB
+- **毛玻璃效果**: 使用SwiftUI的`.ultraThinMaterial`实现现代化UI
 
-### 差异化优势
-| 痛点 | 解决方案 |
-|------|----------|
-| 珍贵照片淹没在相册 | 独立展柜分类突出重要记忆 |
-| 实体收藏品不便携带 | 3D数字化随身展柜 |
-| 情感物品需要仪式感 | 定制化展示空间 |
+## 🏗️ 项目架构
 
-## 🏗️ 技术架构
-
-### 开发环境
-- **平台**: iOS 14.0+
-- **语言**: Swift 5.0+
-- **框架**: SwiftUI
-- **设计模式**: MVVM
-
-### 核心技术栈
-- **UI框架**: SwiftUI + Combine
-- **3D渲染**: SceneKit (计划中)
-- **图片处理**: Core Image (计划中)
-- **数据存储**: Core Data (计划中)
-
-## 📱 界面设计
-
-### 设计风格
-- **玻璃拟物化 (Glassmorphism)**: 使用 `.background(.ultraThinMaterial)`
-- **3D背景景观**: 山地森林背景，增强沉浸感
-- **半透明效果**: 毛玻璃质感，背景景观若隐若现
-
-### 三屏布局设计
-1. **主页 (HomePageView)**
-   - 2x2网格分类导航
-   - 3D景观互动区域
-   - 可点击的展柜预览
-
-2. **展柜内容 (ShowcaseListView)**
-   - 搜索和筛选功能
-   - 展柜列表展示
-   - 图片画廊预览
-
-3. **单个收藏详情 (CollectionDetailView)**
-   - 大图展示区域
-   - 收藏品信息展示
-   - **备注编辑功能** ⭐
-
-## 🔧 项目结构
-
+### 文件结构
 ```
 beautycase/
-├── beautycaseApp.swift          # 主应用入口
-├── MainNavigationView.swift     # 主导航系统
-├── SharedComponents.swift       # 🆕 共享UI组件
-├── HomePageView.swift           # 首页（自己的展柜）
-├── ExplorePageView.swift        # 🆕 探索页（社区）
-├── ProfilePageView.swift        # 🆕 我的（个人主页）
-├── ShowcaseListView.swift       # 展柜内容页面
-├── CollectionDetailView.swift   # 单个收藏详情页
-├── Assets.xcassets/             # 资源文件
-└── Preview Content/             # 预览内容
+├── beautycaseApp.swift          # 应用入口点
+├── MainNavigationView.swift     # 主导航系统（Tab导航）
+├── HomePageView.swift          # 首页分类导航
+├── ShowcaseListView.swift      # 展柜列表页面
+├── ExplorePageView.swift       # 探索/社区页面
+├── ProfilePageView.swift       # 个人主页
+├── CollectionDetailView.swift  # 收藏品详情页
+├── SharedComponents.swift      # 共享UI组件
+└── Assets.xcassets/           # 资源文件
 ```
 
-### 核心组件说明
-- **beautycaseApp.swift**: 应用入口点，配置主视图
-- **MainNavigationView.swift**: 主导航系统，管理三个主要页面的切换
-- **SharedComponents.swift**: 🆕 共享UI组件库，避免重复定义
-  - `MountainBackground`: 3D山地森林背景
-  - `TopNavigationBar`: 顶部导航栏
-  - `AttributeTag`: 属性标签组件
-  - `StatusBarView`: 状态栏组件
-  - `BottomTabBar`: 🆕 玻璃拟物化底部导航栏
-- **HomePageView.swift**: 首页界面，包含分类导航和3D景观互动
-- **ExplorePageView.swift**: 🆕 探索页面，展示社区内容和热门展柜
-- **ProfilePageView.swift**: 🆕 个人主页，用户信息和设置
-- **ShowcaseListView.swift**: 展柜内容页面，展示展柜列表和搜索功能
-- **CollectionDetailView.swift**: 单个收藏详情页，支持备注编辑功能
+### 核心组件
+- **MountainBackground**: 3D背景景观
+- **BottomTabBar**: 自定义底部导航栏
+- **CategoryGridNavigation**: 2x2分类网格导航
+- **ShowcaseContentList**: 展柜内容列表
+- **AddCollectionModal**: 添加收藏弹窗
 
-## 📊 开发进度
+## 🔧 最近修复的问题
 
-### ✅ 已完成功能
-- [x] 项目基础架构搭建
-- [x] 三屏UI界面实现
-- [x] 毛玻璃效果实现
-- [x] 3D背景景观
-- [x] 分类导航系统
-- [x] 搜索筛选界面
-- [x] 备注编辑功能
-- [x] 🆕 共享组件模块化
-- [x] 🆕 代码重复问题修复
+### ✅ 已解决的问题
+1. **Xcode项目文件引用错误**: 清理了已删除文件的引用（StarsShowcaseView.swift, ContentView.swift）
+2. **导航功能失效**: 修复了NavigationLink在TabView中的导航问题
+3. **展柜数据缺失**: 添加了基于分类的真实展柜数据
+4. **组件重复定义**: 统一了共享组件的管理
 
-### 🚧 进行中功能
+### 🆕 新增功能
+1. **分类展柜数据**: 每个分类都有相应的展柜内容
+   - Stars: 周杰伦收藏、Taylor Swift珍藏
+   - Pets: 柯基萌宠、猫咪世界
+   - Medal: 奥运奖牌、学校荣誉
+   - Films: 经典电影、动漫手办
+2. **添加收藏功能**: 实现了"添加收藏"按钮和弹窗
+3. **展柜详情导航**: 点击展柜卡片可查看详情
+
+## 🎯 开发进度
+
+### 已完成
+- [x] 基础UI框架搭建
+- [x] 三页面Tab导航系统
+- [x] 首页分类导航（2x2网格）
+- [x] 展柜列表页面
+- [x] 收藏品详情页面
+- [x] 添加收藏弹窗
+- [x] 毛玻璃效果和3D背景
+- [x] 自定义底部导航栏
+
+### 进行中
+- [ ] 展柜数据持久化
 - [ ] 图片上传功能
-- [ ] 展柜创建逻辑
+- [ ] 3D模型生成
 
-### 📋 待开发功能
-- [ ] 3D模型重建算法
-- [ ] 图片压缩和优化
-- [ ] 本地数据存储
+### 待开发
 - [ ] 用户认证系统
+- [ ] 社交分享功能
+- [ ] 高级展柜模板
+- [ ] Web3集成
+- [ ] AR功能
 
-## 🎨 UI组件库
+## 🚀 下一步计划
 
-### 通用样式
-```swift
-// 毛玻璃效果
-.background(.ultraThinMaterial)
+1. **完善数据层**: 集成Core Data进行数据持久化
+2. **图片处理**: 实现图片上传、压缩和存储
+3. **3D重建**: 开发2D到3D的转换算法
+4. **性能优化**: 实现LOD和渐进式加载
+5. **用户测试**: 收集用户反馈，优化用户体验
 
-// 圆角边框
-.overlay(
-    RoundedRectangle(cornerRadius: 20)
-        .stroke(.white.opacity(0.3), lineWidth: 1)
-)
-```
+## 💡 技术栈
 
-## 🔄 开发流程
+- **前端**: SwiftUI, SceneKit (计划)
+- **图像处理**: Core Image (计划)
+- **数据存储**: Core Data (计划)
+- **网络**: URLSession (计划)
+- **AR功能**: ARKit (计划)
 
-### 开发原则
-1. **配置驱动开发** - 使用集中式配置文件管理项目状态
-2. **敏捷开发流程** - 优先讨论核心功能，快速上线MVP版本
-3. **设计先行** - 重视UI审美，确保视觉体验品质
-4. **深度讨论** - 编码前充分确认产品细节
+## 📝 开发规范
 
-### 迭代计划
-1. **MVP版本** (当前) - 基础UI框架
-2. **功能版本** (下一阶段) - 图片上传、展柜管理
-3. **高级版本** (未来) - 3D重建、社交功能
-
-## 🚨 已知问题
-
-### 技术限制
-- 3D重建算法性能待优化
-- 大量图片的内存管理
-- 毛玻璃效果在低端设备上的性能
-
-## 📈 性能指标
-
-### 目标性能
-- **启动时间**: < 2秒
-- **页面切换**: < 300ms
-- **图片加载**: < 1秒
-
-### 兼容性
-- **iOS版本**: 14.0+
-- **设备支持**: iPhone 6s及以上
+- 使用SwiftUI的现代语法
+- 组件化开发，避免重复代码
+- 遵循MVVM架构模式
+- 注重性能和用户体验
+- 使用毛玻璃效果和现代化UI设计
 
 ---
 
-**最后更新**: 2024年12月
-**版本**: 1.0.0-alpha
-**状态**: 开发中
+*最后更新: 2024年8月13日*
