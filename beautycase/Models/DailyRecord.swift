@@ -1,9 +1,3 @@
-//
-//  DailyRecord.swift
-//  beautycase
-//
-//  每日记录数据模型
-//
 
 import Foundation
 import CoreData
@@ -24,6 +18,7 @@ extension DailyRecord {
         return set.sorted { $0.createdAt > $1.createdAt }
     }
 }
+
 
 extension DailyRecord : Identifiable {
     
