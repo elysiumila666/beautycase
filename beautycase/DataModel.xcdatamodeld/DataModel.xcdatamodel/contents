@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21513" systemVersion="21G920" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="CustomTag" representedClassName="CustomTag" syncable="YES" codeGenerationType="category">
+        <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="type" attributeType="String"/>
+    </entity>
+    <entity name="CyberloafingItem" representedClassName="CyberloafingItem" syncable="YES" codeGenerationType="category">
+        <attribute name="categoryTag" optional="YES" attributeType="String"/>
+        <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="fileType" attributeType="String"/>
+        <attribute name="fromTag" optional="YES" attributeType="String"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="imageData" optional="YES" attributeType="Binary"/>
+        <attribute name="thumbnailImage" optional="YES" attributeType="Binary"/>
+        <attribute name="title" attributeType="String"/>
+        <attribute name="url" optional="YES" attributeType="String"/>
+        <attribute name="whoTag" optional="YES" attributeType="String"/>
+        <relationship name="dailyRecord" maxCount="1" deletionRule="Nullify" destinationEntity="DailyRecord" inverseName="cyberloafingItems" inverseEntity="DailyRecord"/>
+    </entity>
+    <entity name="DailyCareer" representedClassName="DailyCareer" syncable="YES" codeGenerationType="category">
+        <attribute name="afternoonActivity" optional="YES" attributeType="String"/>
+        <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="eveningActivity" optional="YES" attributeType="String"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="morningActivity" optional="YES" attributeType="String"/>
+        <attribute name="reflectionContent" optional="YES" attributeType="String"/>
+        <attribute name="reflectionType" optional="YES" attributeType="String"/>
+        <attribute name="threeFrogsData" optional="YES" attributeType="Transformable"/>
+        <relationship name="dailyRecord" maxCount="1" deletionRule="Nullify" destinationEntity="DailyRecord" inverseName="dailyCareer" inverseEntity="DailyRecord"/>
+    </entity>
+    <entity name="DailyRecord" representedClassName="DailyRecord" syncable="YES" codeGenerationType="category">
+        <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <relationship name="cyberloafingItems" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="CyberloafingItem" inverseName="dailyRecord" inverseEntity="CyberloafingItem"/>
+        <relationship name="dailyCareer" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DailyCareer" inverseName="dailyRecord" inverseEntity="DailyCareer"/>
+    </entity>
+</model>

@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct beautycaseApp: App {
+    let persistenceController = PersistenceController.shared
+    
     var body: some Scene {
         WindowGroup {
-            MainNavigationView()
+            MainView()
+                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .preferredColorScheme(.light)
         }
     }
 }
